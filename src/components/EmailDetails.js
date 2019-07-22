@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class EmailDetails extends Component {
+    //FIXME: Falta agregar el detalle de los archivos enviados en el detalle del mensaje
     render() {
         if (!this.props.email) {
             return (

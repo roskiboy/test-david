@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import './../css/App.css';
@@ -7,6 +8,7 @@ import EmailList from './EmailList.js';
 import EmailDetails from './EmailDetails.js';
 
 class App extends Component {
+  //FIXME: Falta integrar localstorage en los state
   //TODO: Creación del state vacío
   state = {
     selectedEmailId: '',
