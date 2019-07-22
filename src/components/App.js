@@ -7,31 +7,36 @@ import EmailList from './EmailList.js';
 import EmailDetails from './EmailDetails.js';
 
 class App extends Component {
+  //TODO: Creación del state vacío
   state = {
     selectedEmailId: '',
     currentSection: '',
     emails: []
   }
+  //TODO: Se cargan los elementos cada 90seg del json al state referenciandolo con el componentDiDMount
   componentDidMount() {
     setInterval(() => {
       const res = JSON.parse(JSON.stringify(json));
       if(typeof this.state.emails != "undefined" && this.state.emails != null && this.state.emails.length != null && this.state.emails.length > 0) {
+        //TODO: Asignar id's unicos de cada email
         const emails = res;
         let id = this.state.emails.length + 1;
         for (const email of emails) {
           email.id = id++;
           email.mailinbox = 'inbox';
         }
-        console.log(emails);
+        //TODO: Aplicar cambios al state
         this.setState({
           emails: [...emails, ...this.state.emails ]
         });
       } else {
+        //TODO: Asignar id's unicos de cada email
         let id = 1;
         for (const email of res) {
           email.id = id++;
           email.mailinbox = 'inbox';
         }
+        //TODO: Aplicar cambios al state
         this.setState({
           selectedEmailId: 0,
           currentSection: 'inbox',
@@ -40,22 +45,24 @@ class App extends Component {
       }
     }, 90000); 
   }
+  //TODO: Acción (onClick): Definir en el state el id del elemento seleccionado y marcar el mensaje como 'leído'
   openEmail(id) {
     const emails = [...this.state.emails];
     const index = emails.findIndex(x => x.id === id);
     emails[index].isReaded = true;
+    //TODO: Aplicar cambios al state
     this.setState({
       selectedEmailId: id,
       emails 
     });
   }
+  //TODO: Acción (onClick): Marcar el mensaje como 'eliminado'
   deleteMessage(id) {
-    // Mark the message as 'deleted'
     const emails = [...this.state.emails];
     const index = emails.findIndex(x => x.id === id);
     emails[index].isReaded = true;
     emails[index].mailinbox = 'deleted';
-    // Select the next message in the list
+    //TODO: Seleccione el siguiente mensaje en la lista
     let selectedEmailId = '';
     for (const email of emails) {
       if(email.mailinbox === this.state.currentSection) {
@@ -63,18 +70,19 @@ class App extends Component {
           break;
       }
     }
+    //TODO: Aplicar cambios al state
     this.setState({
       emails,
-      selectedEmailId,
+      selectedEmailId : ''
     });
   }
+  //TODO: Acción (onClick): Marcar el mensaje como 'No leído'
   noReadMessage(id) {
-    // Mark the message as 'deleted'
     const emails = [...this.state.emails];
     const index = emails.findIndex(x => x.id === id);
     emails[index].isReaded = false;
     emails[index].mailinbox = 'inbox';
-    // Select the next message in the list
+    //TODO: Seleccione el siguiente mensaje en la lista
     let selectedEmailId = '';
     for (const email of emails) {
       if(email.mailinbox === this.state.currentSection) {
@@ -82,18 +90,19 @@ class App extends Component {
           break;
       }
     }
+    //TODO: Aplicar cambios al state
     this.setState({
       emails,
-      selectedEmailId 
+      selectedEmailId : ''
     });
   }
+  //TODO: Acción (onClick): Marcar el mensaje como 'No deseado'
   noSpamMessage(id) {
-    // Mark the message as 'deleted'
-    const emails = [...this.state.emails];
+    const emails = [...this.state.emails];  
     const index = emails.findIndex(x => x.id === id);
     emails[index].isReaded = true;
     emails[index].mailinbox = 'spam';
-    // Select the next message in the list
+    //TODO: Seleccione el siguiente mensaje en la lista
     let selectedEmailId = '';
     for (const email of emails) {
       if(email.mailinbox === this.state.currentSection) {
@@ -101,16 +110,19 @@ class App extends Component {
           break;
       }
     }
+    //TODO: Aplicar cambios al state
     this.setState({
       emails,
-      selectedEmailId 
+      selectedEmailId : '' 
     });
   }
+  //TODO: Acción (onClick): Definir en el state el id del elemento seleccionado y en que sección se encuentra; "Inbox, Spam, Deleted"
   setSidebarSection(section) {
     let selectedEmailId = this.state.selectedEmailId;
     if (section !== this.state.currentSection) {
       selectedEmailId = '';
     }
+    //TODO: Aplicar cambios al state
     this.setState({
       currentSection: section,
       selectedEmailId: selectedEmailId

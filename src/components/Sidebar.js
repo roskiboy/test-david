@@ -33,25 +33,25 @@ class Sidebar extends Component {
                 </div>
                 <ul className="sidebar__inboxes">
                     <li onClick={ () => this.props.setSidebarSection('inbox') }>
-                        <a>
+                        <a title="Bandeja de entrada">
                             <span className="fa fa-inbox"></span>
                             <div className="cut">Bandeja de entrada</div>
-                            <span className="item-count"> {unreadCount}</span>
+                            <span className="item-count"> { unreadCount }</span>
                         </a>
                     </li>
                     <li onClick={ () => this.props.setSidebarSection('spam') }>
-                        <a>
+                        <a title="Marcar como correo no deseado">
                             <span className="fa fa-ban"></span>
                             <div className="cut">Marcar como correo no deseado</div>
-                            <span className="item-count"> {spamCount}</span>
+                            <span className="item-count"> { spamCount }</span>
                            
                         </a>
                     </li>
                     <li onClick={ () => this.props.setSidebarSection('deleted') }>
-                        <a> 
+                        <a title="Eliminados"> 
                             <span className="fa fa-trash-o"></span>
                             <div className="cut">Eliminados</div>
-                            <span className="item-count"> {deletedCount}</span>
+                            <span className="item-count"> { deletedCount }</span>
                         </a>
                     </li>
                 </ul>

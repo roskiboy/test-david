@@ -10,16 +10,18 @@ class EmailList extends Component {
         }
         return (
             <div className="email-list">
-            { this.props.emails.map((email, index) => { 
-                return(
-                    <EmailListItem 
-                        key = { index }
-                        onEmailClicked = { (id) => this.props.onEmailSelected(id) }
-                        email = { email }
-                        selected = { this.props.selectedEmailId === email.id } 
-                    />
-                )
-            }) }
+            { 
+                this.props.emails.map((email, index) => { 
+                    return(
+                        <EmailListItem 
+                            key = { index }
+                            onEmailClicked = { (id) => this.props.onEmailSelected(id) }
+                            email = { email }
+                            selected = { this.props.selectedEmailId === email.id } 
+                        />
+                    )
+                }) 
+            }
             </div>
         )
     }
